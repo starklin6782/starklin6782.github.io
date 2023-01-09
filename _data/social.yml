@@ -7,10 +7,10 @@ feed:
 share:
   email: true
   facebook: true
-  linkedin: true
-  pinterest: true
+  linkedin: 
+  pinterest: 
   pocket:
   reddit: true
-  tumblr: true
+  tumblr: 
   twitter: true
   wordpress:
