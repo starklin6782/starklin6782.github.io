@@ -12,8 +12,8 @@
     <!-- Theme Mode-->
     
     <script>
-        const isAutoTheme = false;
-        document.documentElement.setAttribute('data-theme', "dark")
+        const isAutoTheme = true;
+        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('theme'))
     </script>
     
 
@@ -197,6 +197,9 @@
         
         
         
+        <li class="separator"> | </li>
+        <li><a id="theme-toggle" title=" " aria-label="" onclick="themeToggle()"></a></li>
+        
     </ul>
 
 	</nav>
@@ -228,6 +231,78 @@
 
     <div class="posts">
     
+    
+    <div class="post-teaser">
+        
+        <span>
+          <header>
+            <h1>
+              <a aria-label="Random Passworld" class="post-link" href="/demo/2023/01/09/Clock.html">
+                Random Passworld
+              </a>
+            </h1>
+            
+
+
+<div class="post-info">
+    <p class="meta">
+      
+      
+      January 09, 2023
+    </p></div>
+
+          </header>
+          
+              <div class="excerpt">
+                  
+                     
+  
+    
+    
+    
+    Random Password
+    
+
+                  
+              </div>
+          
+      </span>
+    </div>
+    
+    <div class="post-teaser">
+        
+        <span>
+          <header>
+            <h1>
+              <a aria-label="Memory game" class="post-link" href="/demo/2023/01/08/Interesting-Project.html">
+                Memory game
+              </a>
+            </h1>
+            
+
+
+<div class="post-info">
+    <p class="meta">
+      
+      
+      January 08, 2023
+    </p></div>
+
+          </header>
+          
+              <div class="excerpt">
+                  
+                     
+
+    
+    Memory Game
+
+
+                  
+              </div>
+          
+      </span>
+    </div>
     
     <div class="post-teaser">
         
@@ -328,84 +403,6 @@ Because if you put some code in your blog, you would at least make it:
                   
                      Consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. 
 Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
-
-                  
-              </div>
-          
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-        
-        <span>
-          <header>
-            <h1>
-              <a aria-label="Color Post" class="post-link" href="/example/2019/05/18/color-post.html">
-                Color Post
-              </a>
-            </h1>
-            
-
-
-<div class="post-info"><a href="https://github.com/sylhare" target="_blank" rel="noopener">
-      <img alt="Author's avatar" src="https://avatars3.githubusercontent.com/u/20642750?s=460&v=4">
-    
-    <p class="meta">
-      Sylhare - 
-      
-      May 18, 2019
-    </p></a></div>
-
-          </header>
-          
-              <div class="excerpt">
-                  
-                     What a colorful post!
-
-This is an idea that came from xukimseven/HardCandy-Jekyll 
-looking at this cheerful and colorful theme, I wanted to enable something similar for Type-on-Strap.
-
-You can go fork and star HardCandy-Jekyll too! 😉
-
-
-                  
-              </div>
-          
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-        
-        <div class="post-img">
-            <a aria-label="Feature images" href="/example/2018/10/29/feature-images.html">
-                <img alt="Feature images" src="/assets/img/thumbnails/feature-img/desk-messy.jpeg">
-            </a>
-        </div>
-        
-        <span>
-          <header>
-            <h1>
-              <a aria-label="Feature images" class="post-link" href="/example/2018/10/29/feature-images.html">
-                Feature images
-              </a>
-            </h1>
-            
-
-
-<div class="post-info">
-    <p class="meta">
-      
-      
-      October 29, 2018
-    </p></div>
-
-          </header>
-          
-              <div class="excerpt">
-                  
-                     Hopefully you will find enough information about how to set images in your blog here.
-This is an example of a post which includes a feature image specified in the front matter of the post. 
-The feature image spans the full-width of the page, and is shown with the title on permalink pages:
 
                   
               </div>

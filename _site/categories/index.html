@@ -12,8 +12,8 @@
     <!-- Theme Mode-->
     
     <script>
-        const isAutoTheme = false;
-        document.documentElement.setAttribute('data-theme', "dark")
+        const isAutoTheme = true;
+        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('theme'))
     </script>
     
 
@@ -196,6 +196,9 @@
         
         
         
+        <li class="separator"> | </li>
+        <li><a id="theme-toggle" title="Categories " aria-label="Categories" onclick="themeToggle()"></a></li>
+        
     </ul>
 
 	</nav>
@@ -223,7 +226,7 @@
                 <a href="#Syntax" class="category-anchor">
                     <li>
                         Syntax
-                        <!-- 0.75 -->
+                        <!-- 0.72 -->
                         <!-- <span class="category-number">2</span> -->
                     </li>
                 </a>
@@ -231,15 +234,15 @@
                 <a href="#Demo" class="category-anchor">
                     <li>
                         Demo
-                        <!-- 0.87 -->
-                        <!-- <span class="category-number">3</span> -->
+                        <!-- 1.05 -->
+                        <!-- <span class="category-number">5</span> -->
                     </li>
                 </a>
             
                 <a href="#Example" class="category-anchor">
                     <li>
                         Example
-                        <!-- 0.75 -->
+                        <!-- 0.72 -->
                         <!-- <span class="category-number">2</span> -->
                     </li>
                 </a>
@@ -273,6 +276,20 @@
                     
                     <h4 id="Demo" class="title">Demo</h4>
                     <div class="items">
+                        
+                            <a href="/demo/2023/01/09/Clock.html" class="category-post-link">
+                                <div class="item">
+                                    <p class="meta">January 9, 2023</p>
+                                    <p class="title">Random Passworld</p>
+                                </div>
+                            </a>
+                        
+                            <a href="/demo/2023/01/08/Interesting-Project.html" class="category-post-link">
+                                <div class="item">
+                                    <p class="meta">January 8, 2023</p>
+                                    <p class="title">Memory game</p>
+                                </div>
+                            </a>
                         
                             <a href="/demo/2021/04/27/dark-mode.html" class="category-post-link">
                                 <div class="item">

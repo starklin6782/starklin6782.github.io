@@ -1,4 +1,544 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-09T21:36:28+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">StarkLin’s blog</title><subtitle>A website with blog posts and pages</subtitle><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/demo/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+08:00</published><updated>2021-04-27T00:00:00+08:00</updated><id>http://localhost:4000/demo/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/demo/2021/04/27/dark-mode.html"><![CDATA[<p>More colors with less light. Click the <strong>half-moon</strong> most top-right button to turn the lights ON/OFF.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-10T01:55:01+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">StarkLin’s blog</title><subtitle>A website with blog posts and pages</subtitle><entry><title type="html">Random Passworld</title><link href="http://localhost:4000/demo/2023/01/09/Clock.html" rel="alternate" type="text/html" title="Random Passworld" /><published>2023-01-09T00:00:00+08:00</published><updated>2023-01-09T00:00:00+08:00</updated><id>http://localhost:4000/demo/2023/01/09/Clock</id><content type="html" xml:base="http://localhost:4000/demo/2023/01/09/Clock.html"><![CDATA[<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Password</title>
+    <style>
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      body {
+        flex-direction: column;
+      }
+      .container {
+        flex-direction: column;
+        width: 400px;
+        height: 400px;
+      }
+      .box {
+        margin: 1rem;
+      }
+      button {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+      }
+
+      #input-el {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      .copied {
+        margin-top: 2rem;
+        padding: 0.5rem 8rem;
+        background-color: rgb(163, 163, 163);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="flex">
+    <div class="container flex">
+      <h1>Generate Password</h1>
+      <div class="box flex">
+        <input type="text" id="input-el" />
+        <button id="copy-button">copy</button>
+        <button id="generate-button">Generate</button>
+      </div>
+      <p class="copied">copied</p>
+    </div>
+
+    <script>
+      //dom selection
+      let inputEl = document.querySelector("#input-el");
+      const copyButton = document.querySelector("#copy-button");
+      const copied = document.querySelector(".copied");
+      const generateButton = document.querySelector("#generate-button");
+      let password = "";
+      generateButton.addEventListener("click", function () {
+        let password = "";
+        inputEl.value =""
+        const length = 8;
+        let chars = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()`;
+        let n = chars.length;
+        for (let i = 0; i < length; i++) {
+          password += chars.charAt(Math.floor(Math.random() * n));
+        }
+        console.log(password);
+        inputEl.value = password;
+      });
+      copyButton.addEventListener("click", function () {
+        inputEl.value =""
+        navigator.clipboard.writeText(password);
+        copied.style.opacity = "1";
+        setTimeout(function () {
+          copied.style.opacity = "0";
+        }, 900);
+      });
+    </script>
+  </body>
+</html>]]></content><author><name></name></author><category term="Demo" /><category term="Project" /><summary type="html"><![CDATA[Random Password]]></summary></entry><entry><title type="html">Memory game</title><link href="http://localhost:4000/demo/2023/01/08/Interesting-Project.html" rel="alternate" type="text/html" title="Memory game" /><published>2023-01-08T00:00:00+08:00</published><updated>2023-01-08T00:00:00+08:00</updated><id>http://localhost:4000/demo/2023/01/08/Interesting-Project</id><content type="html" xml:base="http://localhost:4000/demo/2023/01/08/Interesting-Project.html"><![CDATA[<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Memory Game</title>
+
+    <style>
+        body {
+            background-color: #506972;
+            font-family: sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .container-inner {
+            width: 100%;
+            max-width: 1024px;
+        }
+
+        .vertical-space-manager {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .game-player {
+            max-width: 100%;
+            padding: 1rem;
+            background-color: #F0F0F1;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .game-title {
+            text-align: center;
+        }
+
+        #game-description {
+            text-align: center;
+        }
+
+        #start-button-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .start-button-container-disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #start-button {
+            color: white;
+            background-color: #11D66D;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        #start-button:hover {
+            opacity: 0.7;
+        }
+
+        #current-level-info {
+            margin-top: 1rem;
+        }
+
+        #current-level-number-display {
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.2s;
+            opacity: 0;
+        }
+
+        .current-level-number-display-enabled {
+            opacity: 1 !important;
+        }
+
+        #current-level-guesses-message {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        #current-level-guesses-display {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .current-correct-guess-panel {
+            flex: 1;
+            aspect-ratio: 1;
+            max-width: 10%;
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+
+        #random-panel-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        #random-panel {
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            /*transition: all 0.2s;*/
+        }
+
+        .random-panel-none {
+            display: none;
+        }
+
+        #controls {
+            margin-top: 1rem;
+            transition: all 0.2s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .controls-enabled {
+            opacity: 1 !important;
+            pointer-events: all !important;
+        }
+
+        #controls-instructions {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        #controls-btns-row {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+        }
+
+        .controls-btn {
+            flex: 1;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .controls-btn:hover {
+            opacity: 0.7;
+        }
+
+        #game-over-container {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .game-over-container-visible {
+            display: block !important;
+        }
+
+        #game-over-message {
+            text-align: center;
+            color: #FF4238;
+        }
+
+        #game-over-correct-solution {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .bg-red {
+            background-color: #FF4238;
+        }
+
+        .bg-yellow {
+            background-color: #FFEE3F;
+        }
+
+        .bg-green {
+            background-color: #11D66D;
+        }
+
+        .bg-purple {
+            background-color: #7859E6;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div class="container">
+        <div class="container-inner">
+            <div class="vertical-space-manager">
+                <div>
+                </div>
+
+                <div class="game-player">
+                    <h1 class="game-title">Memory Game</h1>
+                    <h5 id="game-description">
+                        Click "Start Game" and try to remember the colors you see!<br /><br />
+                        Each level is randomized from the prvevious &amp; gets faster &amp; faster!
+                    </h5>
+
+                    <div id="start-button-container">
+                        <button id="start-button">
+                            Start Game
+                        </button>
+                    </div>
+
+                    <div id="current-level-info">
+                        <div>
+                            <h3 id="current-level-number-display"></h3>
+                        </div>
+
+                        <div>
+                            <h3 id="current-level-guesses-message"></h3>
+
+                            <div id="current-level-guesses-display">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="random-panel-container">
+                        <div id="random-panel">
+                        </div>
+                    </div>
+
+                    <div id="controls">
+                        <div>
+                            <h3 id="controls-instructions">
+                                Click the colors in the order they appeared
+                            </h3>
+                        </div>
+
+                        <div id="controls-btns-row">
+                            <div id="controls-btn-red" class="controls-btn bg-red">
+                            </div>
+
+                            <div id="controls-btn-yellow" class="controls-btn bg-yellow">
+                            </div>
+
+                            <div id="controls-btn-green" class="controls-btn bg-green">
+                            </div>
+
+                            <div id="controls-btn-purple" class="controls-btn bg-purple">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="game-over-container">
+                        <h2 id="game-over-message">
+                            Game Over!<br /><br />
+                            Click "Start Game" to play again.<br /><br />
+                            Correct solution below:
+                        </h2>
+
+                        <div id="game-over-correct-solution">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* I wrote this all during a flight, so don't critique it too hard! */
+
+    console.log("Not trying to cheat, are you?");
+
+    let levelFlashingInProgress = false;
+    let level = 0;
+    const baseRounds = 4;
+    const baseTime = 1000;
+    const levelSpeedMod = 65;
+
+    let currentBg;
+    let currentLevelBgs = [];
+    let currentLevelGuesses = [];
+    let currentIteration = 0;
+
+    const startButtonContainer = document.getElementById("start-button-container");
+    const startButton = document.getElementById("start-button");
+    const currentLevelNumberDisplay = document.getElementById("current-level-number-display");
+    const currentLevelGuessesMessage = document.getElementById("current-level-guesses-message");
+    const currentLevelGuessesDisplay = document.getElementById("current-level-guesses-display");
+    const randomPanel = document.getElementById("random-panel");
+    const controls = document.getElementById("controls");
+    const gameOverContainer = document.getElementById("game-over-container");
+    const gameOverCorrectSolution = document.getElementById("game-over-correct-solution");
+
+    const controlsBtnRed = document.getElementById("controls-btn-red");
+    const controlsBtnYellow = document.getElementById("controls-btn-yellow");
+    const controlsBtnGreen = document.getElementById("controls-btn-green");
+    const controlsBtnPurple = document.getElementById("controls-btn-purple");
+
+    startButton.addEventListener("click", startLevel);
+
+    controlsBtnRed.addEventListener("click", guessColor("bg-red"));
+    controlsBtnYellow.addEventListener("click", guessColor("bg-yellow"));
+    controlsBtnGreen.addEventListener("click", guessColor("bg-green"));
+    controlsBtnPurple.addEventListener("click", guessColor("bg-purple"));
+
+    function getRandomNumberInclusive(lower, upper) {
+        return Math.floor(Math.random() * (upper + 1) - lower);
+    }
+
+    // Map the numbers to classes for the random panel
+    function getClassNameFromNumber(number) {
+        switch(number) {
+            case 0:
+                return "bg-red";
+            case 1:
+                return "bg-yellow";
+            case 2:
+                return "bg-green";
+            case 3:
+            default:
+                return "bg-purple";
+        }
+    }
+
+    function startLevel() {
+        if (levelFlashingInProgress) {
+            return;
+        }
+
+        levelFlashingInProgress = true;
+        // clear the correct guesses section
+        currentLevelGuessesMessage.innerText = "";
+        currentLevelGuessesDisplay.innerHTML = "";
+        startButtonContainer.classList.add("start-button-container-disabled");
+        gameOverContainer.classList.remove("game-over-container-visible");
+        randomPanel.classList.remove("random-panel-none");
+        currentLevelNumberDisplay.innerText = `Current Level: ${level + 1}`;
+        currentLevelNumberDisplay.classList.add("current-level-number-display-enabled")
+
+        const intervalSpeed = baseTime - (level * levelSpeedMod * (((level * 100) / 1000) + 1));
+
+        let workingClassName;
+
+        // Start the level, or "flashing"
+        const flashingInterval =  setInterval(() => {
+            if (workingClassName) {
+                randomPanel.classList.remove(workingClassName); // Remove the previous color of the flashing div
+            }
+
+            workingClassName = getNewClass(); // generate a new class
+            currentBg = workingClassName; // save the new class for reference
+            currentLevelBgs.push(currentBg);
+            randomPanel.classList.add(workingClassName); // add the new class to the flashing div
+            currentIteration++;
+
+            if (currentIteration === level + baseRounds) {
+                clearInterval(flashingInterval);
+                setTimeout(() => {
+                    levelFlashingInProgress = false;
+                    preparePlayingFieldForLevel();
+                }, intervalSpeed);
+            }
+        }, intervalSpeed); // increments a little bit faster each level
+    }
+
+    function preparePlayingFieldForLevel() {
+        // console.log(currentLevelBgs);
+        randomPanel.classList.forEach(c => randomPanel.classList.remove(c));
+        randomPanel.classList.add("random-panel-none");
+        controls.classList.add("controls-enabled");
+        currentLevelGuessesMessage.innerText = getCurrentCorrectGuessesMessage();
+    }
+
+    function guessColor(color) {
+        return () => {
+            if (color === currentLevelBgs[currentLevelGuesses.length]) {
+                currentLevelGuesses.push(color);
+                currentLevelGuessesMessage.innerText = getCurrentCorrectGuessesMessage();
+                getNewCurrentCorrectGuessesDisplay(color, currentLevelGuessesDisplay);
+
+                if (currentLevelGuesses.length === currentLevelBgs.length) {
+                    // clear the controls
+                    controls.classList.remove("controls-enabled");
+
+                    setTimeout(() => {
+                        // reset a whole ton of variables
+                        currentBg = null;
+                        currentLevelBgs = [];
+                        currentLevelGuesses = [];
+                        currentIteration = 0;
+
+                        // clear the correct guesses section
+                        currentLevelGuessesMessage.innerText = "";
+                        currentLevelGuessesDisplay.innerHTML = "";
+
+                        // increment the level
+                        level++;
+
+                        // begin again
+                        startLevel();
+                    }, 1000);
+                }
+            } else {
+                console.log("you lose! (But there's really no winning, is there?)");
+                gameOverContainer.classList.add("game-over-container-visible");
+                randomPanel.classList.add("random-panel-none");
+                currentLevelBgs.forEach(c => getNewCurrentCorrectGuessesDisplay(c, gameOverCorrectSolution));
+                controls.classList.remove("controls-enabled");
+                startButtonContainer.classList.remove("start-button-container-disabled");
+                currentBg = null;
+                currentLevelBgs = [];
+                currentLevelGuesses = [];
+                currentIteration = 0;
+                level = 0;
+            }
+        }
+    }
+
+    function getCurrentCorrectGuessesMessage() {
+        return `Current Correct Guesses: ${currentLevelGuesses.length}/${currentLevelBgs.length}`;
+    }
+
+    function getNewCurrentCorrectGuessesDisplay(className, parent) {
+        const newPanel = document.createElement("div");
+        newPanel.classList.add("current-correct-guess-panel");
+        newPanel.classList.add(className);
+        parent.append(newPanel);
+    }
+
+    function getNewClass() {
+        const classNumber = getRandomNumberInclusive(0, 3);
+        let workingClassName = getClassNameFromNumber(classNumber);
+
+        if (currentBg === workingClassName) {
+            workingClassName = getNewClass();
+        }
+
+        return workingClassName;
+    }
+</script>
+</body>
+</html>]]></content><author><name></name></author><category term="Demo" /><category term="Project" /><summary type="html"><![CDATA[Memory Game]]></summary></entry><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/demo/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+08:00</published><updated>2021-04-27T00:00:00+08:00</updated><id>http://localhost:4000/demo/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/demo/2021/04/27/dark-mode.html"><![CDATA[<p>More colors with less light. Click the <strong>half-moon</strong> most top-right button to turn the lights ON/OFF.
 Here is a bit of everything, so you can check how the theme look, have fun! 👌</p>
 
 <h1 id="headers">Headers</h1>
@@ -669,127 +1209,4 @@ Well that’s due to some jekyll limitation:</p>
 </blockquote>
 
 <p>The title is used elsewhere than inside the post, for example in the blog page that list this post.
-An empty title would break those pages and possibly prevents jekyll to render your blog.</p>]]></content><author><name>Mhagnumdw</name></author><category term="Test" /><category term="Image" /><summary type="html"><![CDATA[This is an example of a post which includes a feature image that has a text, where you don’t want to redisplay the title. Mind your image size in order for the text to be displayed where you want it to. The only limit is your imagination.]]></summary></entry><entry><title type="html">The Real Lorem Ipsum</title><link href="http://localhost:4000/demo/2014/11/26/lorem-ipsum.html" rel="alternate" type="text/html" title="The Real Lorem Ipsum" /><published>2014-11-26T00:00:00+08:00</published><updated>2014-11-26T00:00:00+08:00</updated><id>http://localhost:4000/demo/2014/11/26/lorem-ipsum</id><content type="html" xml:base="http://localhost:4000/demo/2014/11/26/lorem-ipsum.html"><![CDATA[<h2 id="lorem-ipsum">Lorem Ipsum</h2>
-
-<p>from <em>“de Finibus Bonorum et Malorum”</em> written by Cicero in 45 BC.
- <!--more-->
-Find out more on <a href="https://www.lipsum.com/">lipsum.com</a>. And if you like colors, check out the <a href="https://www.w3schools.com/colors/colors_trends.asp">http color trends</a> from w3schools.</p>
-
-<h3 id="the-standard-lorem-ipsum-passage-since-1500s">The standard Lorem Ipsum passage (since 1500s)</h3>
-
-<p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”</p>
-
-<h3 id="section-11032">Section 1.10.32</h3>
-
-<h4 id="latin">Latin</h4>
-<p>“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?”</p>
-
-<h4 id="translation-by-h-rackham-1914">Translation by H. Rackham (1914)</h4>
-<p>“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?”</p>
-
-<h3 id="section-11033">Section 1.10.33</h3>
-
-<h4 id="latin-1">Latin</h4>
-
-<p>“At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.”</p>
-
-<h4 id="translation-by-h-rackham-1914-1">Translation by H. Rackham (1914)</h4>
-
-<p>“On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.”</p>]]></content><author><name></name></author><category term="Demo" /><category term="Image" /><category term="Color" /><summary type="html"><![CDATA[Lorem Ipsum from “de Finibus Bonorum et Malorum” written by Cicero in 45 BC.]]></summary></entry><entry><title type="html">Markup: Syntax Highlighting</title><link href="http://localhost:4000/syntax/2014/08/08/Markup-Syntax-Highlighting.html" rel="alternate" type="text/html" title="Markup: Syntax Highlighting" /><published>2014-08-08T00:00:00+08:00</published><updated>2014-08-08T00:00:00+08:00</updated><id>http://localhost:4000/syntax/2014/08/08/Markup-Syntax-Highlighting</id><content type="html" xml:base="http://localhost:4000/syntax/2014/08/08/Markup-Syntax-Highlighting.html"><![CDATA[<p>Syntax highlighting<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> is a feature that displays source code. 
-This feature facilitates writing in a structured language such as a programming language or a markup language as it makes import things visually distinct.</p>
-
-<h3 id="gfm-code-blocks">GFM Code Blocks</h3>
-
-<p>GitHub Flavored Markdown <a href="https://help.github.com/articles/creating-and-highlighting-code-blocks/">fenced code blocks</a> are supported. To modify styling and highlight colors edit <code class="language-plaintext highlighter-rouge">/_sass/syntax.scss</code>.</p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">#container</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">-240px</span> <span class="m">0</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="nc">.highlight</span> <span class="p">{</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
-  <span class="nl">font-family</span><span class="p">:</span> <span class="nv">$monospace</span><span class="p">;</span>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="nv">$type-size-7</span><span class="p">;</span>
-  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></figure>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"pagination"</span> <span class="na">role=</span><span class="s">"navigation"</span><span class="nt">&gt;</span>
-  {% if page.previous %}
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.url }}{{ page.previous.url }}"</span> <span class="na">class=</span><span class="s">"btn"</span> <span class="na">title=</span><span class="s">"{{ page.previous.title }}"</span><span class="nt">&gt;</span>Previous article<span class="nt">&lt;/a&gt;</span>
-  {% endif %}
-  {% if page.next %}
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.url }}{{ page.next.url }}"</span> <span class="na">class=</span><span class="s">"btn"</span> <span class="na">title=</span><span class="s">"{{ page.next.title }}"</span><span class="nt">&gt;</span>Next article<span class="nt">&lt;/a&gt;</span>
-  {% endif %}
-<span class="nt">&lt;/nav&gt;</span><span class="c">&lt;!-- /.pagination --&gt;</span>
-</code></pre></div></div>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyll</span>
-  <span class="k">class</span> <span class="nc">TagIndex</span> <span class="o">&lt;</span> <span class="no">Page</span>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">dir</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
-      <span class="vi">@site</span> <span class="o">=</span> <span class="n">site</span>
-      <span class="vi">@base</span> <span class="o">=</span> <span class="n">base</span>
-      <span class="vi">@dir</span> <span class="o">=</span> <span class="n">dir</span>
-      <span class="vi">@name</span> <span class="o">=</span> <span class="s1">'index.html'</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">process</span><span class="p">(</span><span class="vi">@name</span><span class="p">)</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">read_yaml</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s1">'_layouts'</span><span class="p">),</span> <span class="s1">'tag_index.html'</span><span class="p">)</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'tag'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-      <span class="n">tag_title_prefix</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">config</span><span class="p">[</span><span class="s1">'tag_title_prefix'</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'Tagged: '</span>
-      <span class="n">tag_title_suffix</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">config</span><span class="p">[</span><span class="s1">'tag_title_suffix'</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'&amp;#8211;'</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">tag_title_prefix</span><span class="si">}#{</span><span class="n">tag</span><span class="si">}</span><span class="s2">"</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"An archive of posts tagged </span><span class="si">#{</span><span class="n">tag</span><span class="si">}</span><span class="s2">."</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<h3 id="code-blocks-in-lists">Code Blocks in Lists</h3>
-
-<p>Indentation matters. Be sure the indent of the code block aligns with the first non-space character after the list item marker (e.g., <code class="language-plaintext highlighter-rouge">1.</code>). Usually this will mean indenting 3 spaces instead of 4.</p>
-
-<ol>
-  <li>Do step 1.</li>
-  <li>
-    <p>Now do this:</p>
-
-    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Now you can do this.</li>
-</ol>
-
-<h3 id="github-gist-embed">GitHub Gist Embed</h3>
-
-<p>An example of a Gist embed below:</p>
-
-<script src="https://gist.github.com/sylhare/dad7ed1ef3d13614c77c4ebadf8a11c3.js"></script>
-
-<p>Here is how it looks like:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html">   <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://gist.github.com/sylhare/dad7ed1ef3d13614c77c4ebadf8a11c3.js"</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;/script&gt;</span></code></pre></figure>
-
-<p><br /></p>
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p><span class="cit-authors">Michael’s Rose</span>, <span class="cit-title"><a href="https://mmistakes.github.io/minimal-mistakes/markup-syntax-highlighting">Minimal Mistakes</a></span> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name>Michael Rose</name></author><category term="Syntax" /><category term="Highlight" /><category term="Markdown" /><summary type="html"><![CDATA[Syntax highlighting1 is a feature that displays source code. This feature facilitates writing in a structured language such as a programming language or a markup language as it makes import things visually distinct. Michael’s Rose, Minimal Mistakes &#8617;]]></summary></entry></feed>
+An empty title would break those pages and possibly prevents jekyll to render your blog.</p>]]></content><author><name>Mhagnumdw</name></author><category term="Test" /><category term="Image" /><summary type="html"><![CDATA[This is an example of a post which includes a feature image that has a text, where you don’t want to redisplay the title. Mind your image size in order for the text to be displayed where you want it to. The only limit is your imagination.]]></summary></entry></feed>
