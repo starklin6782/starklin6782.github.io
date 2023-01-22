@@ -1,464 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-10T02:08:40+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">StarkLin’s blog</title><subtitle>A website with blog posts and pages</subtitle><entry><title type="html">Random Passworld</title><link href="http://localhost:4000/demo/2023/01/10/cauculator.html" rel="alternate" type="text/html" title="Random Passworld" /><published>2023-01-10T00:00:00+08:00</published><updated>2023-01-10T00:00:00+08:00</updated><id>http://localhost:4000/demo/2023/01/10/cauculator</id><content type="html" xml:base="http://localhost:4000/demo/2023/01/10/cauculator.html"><![CDATA[<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>c o l o r c l o c k</title>
-  <style>
-    :root {
-  --background: hsl(0, 0%, 100%);
-}
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body {
-	text-align:center;
-  background:var(--background);
-  user-select:none;
-}
-
-#container {
-  position:relative;
-  overflow:hidden;
-}
-
-#clock {
-  height:100vh;
-	color:white;
-	display:flex;
-  align-items:center;
-  justify-content:center;
-	font-size:120px;
-	font-family:'Courier New', Courier, monospace;
-}
-
-#controls {
-  position:absolute;
-  right:0;
-  top:0;
-  width:228px;
-  height:100%;
-  padding:48px 24px 48px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-around;
-  align-items:center;
-  transform:translateX(0);
-  background-color:rgba(0, 0, 0, .3);
-  transition:all 1s ease-in-out;
-}
-
-#controls.closed {
-  transform:translateX(calc(100% - 48px));
-  background-color:transparent;
-  color:transparent;
-  transition:all 1s ease-in-out;
-}
-
-#controls.closed .control {
-  opacity:0;
-  transition:opacity 1s ease;
-}
-
-.menuButton {
-  color:white;
-  font-size:32px;
-  font-family:'Courier New', Courier, monospace;
-  position:absolute;
-  top:10px;
-  left:16px;
-  transform:rotate(180deg);
-  transition:1s ease-in-out;
-}
-
-.menuButton.open {
-  transform:rotate(0deg);
-  transition:1s ease-in-out;
-}
-
-#lightnessSlider {
-  width:100%;
-  margin:10px 0;
-}
-
-.text {
-	font-family:'Courier New', Courier, monospace;
-	font-size:12px;
-	color:white;
-}
-
-.control {
-  margin:48px 0;
-  opacity:1;
-  transition:opacity 2s ease;
-}
-
-.small {
-  font-size:10px;
-}
-
-.bold {
-  font-weight:bold;
-}
-
-.button {
-  width:60%;
-  padding:10px;
-  border:1px solid white;
-}
-
-.menuButton:hover, .button:hover, #explainerButton:hover {
-  cursor:pointer;
-}
-
-#explainerButton {
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  font-size:22px;
-  font-weight:bold;
-}
-
-#explainer {
-  visibility: visible;
-  position:absolute;
-  width:280px;
-  height:290px;
-  overflow-y:scroll;
-  border:1px solid white;
-  left:48px;
-  bottom:48px;
-  padding:5px;
-  font-family:'Courier New', Courier, monospace;
-  font-size:16px;
-  background-color:rgba(0, 0, 0, .3);
-  text-align:left;
-}
-
-#explainer.closed {
-  visibility:hidden;
-}
-
-p {
-  margin:10px 0;
-}
-
-input[type=range] {
-  -webkit-appearance: none;
-  width: 40%;
-  vertical-align: middle;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 0px;
-  cursor: pointer;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-  background: #ffffff;
-  border-radius: 6.2px;
-  border: 1px solid #ececec;
-}
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 0px 0px 0px rgba(5, 0, 0, 0), 0px 0px 0px rgba(31, 0, 0, 0);
-  border: 0px solid #000000;
-  height: 12px;
-  width: 11px;
-  border-radius: 50px;
-  background: #ffffff;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -7px;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ffffff;
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 0px;
-  cursor: pointer;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-  background: #ffffff;
-  border-radius: 6.2px;
-  border: 1px solid #ececec;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 0px rgba(5, 0, 0, 0), 0px 0px 0px rgba(31, 0, 0, 0);
-  border: 0px solid #000000;
-  height: 12px;
-  width: 11px;
-  border-radius: 50px;
-  background: #ffffff;
-  cursor: pointer;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 0px;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #fcfcfc;
-  border: 1px solid #ececec;
-  border-radius: 12.4px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-}
-input[type=range]::-ms-fill-upper {
-  background: #ffffff;
-  border: 1px solid #ececec;
-  border-radius: 12.4px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
-}
-input[type=range]::-ms-thumb {
-  box-shadow: 0px 0px 0px rgba(5, 0, 0, 0), 0px 0px 0px rgba(31, 0, 0, 0);
-  border: 0px solid #000000;
-  height: 12px;
-  width: 11px;
-  border-radius: 50px;
-  background: #ffffff;
-  cursor: pointer;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #ffffff;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #ffffff;
-}
-  </style>
-</head>
-
-<body>
-  <div id="container">
-    <div id="clock">
-    	<span id="hour"></span><span class="clock_separator">:</span><span id="minutes"></span><span class="clock_separator">:</span><span id="seconds"></span>
-    </div>
-    <div id="controls" class="closed">
-      <div class="menuButton">&lt;</div>
-      <div id="lightnessControl" class="control">
-        <div class="text">set color lightness:</div>
-        <input type="range" id="lightnessSlider" min="10" max="90" />
-        <div class="text" id="lightnessValue">50%</div>
-      </div>
-      <div id="backgroundStyleToggle" class="text button control">Switch to gradient</div>
-      <div id="timeEncodingToggle" class="text button control">Current mode: hueWheel<br /><p class="bold">
-        Change
-      </p></div>
-    </div>
-
-    <div id="explainerButton" class="text">?</div>
-    <div id="explainer" class="text closed">
-    	???
-      <p>Color Clock is a clock with a background color derived from the current time. So far I've implemented two ways of doing this: <span class="bold">time to hex</span> and <span class="bold">hue wheel</span></p>
-    	<p class="bold">Time to hex</p>
-    	<p>The current time is flattened into a six-character string and appended to a pound sign in order to be used as a hex color value. 13:43:06 becomes #134306.</p>
-    	<p class="bold">Hue wheel</p>
-    	<p>Each hour (0-23) is mapped to a section of the hue wheel (0-359).</p>
-      <p class="bold">Gradient mode</p>
-      <p>Makes a pretty gradient by adding a second color that is a bit further (30 degrees) in the hue wheel.</p>
-      <p class="small">Made by mechamech</p>
-    </div>
-  </div>
-  <script>
-    const hourEl = document.getElementById('hour');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    const lightnessSlider = document.getElementById('lightnessSlider');
-
-    class Clock {
-      constructor() {
-        this.time = {
-          hour: 0,
-          minutes: 0,
-          seconds: 0
-        }
-      }
-
-    setTime() {
-      let date = new Date();	
-      this.time.hour = date.getHours();
-      this.time.minutes = date.getMinutes();
-      this.time.seconds = date.getSeconds();
-    }
-
-    getTime() {
-      return this.time;
-    }
-
-    displayTime() {
-      let clock = this;
-      let time = clock.time;
-      hourEl.textContent = clock.addZero(time.hour);
-      minutesEl.textContent = clock.addZero(time.minutes);
-      secondsEl.textContent = clock.addZero(time.seconds);
-    }
-	
-	addZero(number) {
-		if (number < 10) {
-			return "" + 0 + number;
-		}
-		return number;
-	}
-
-	tick() {
-		let clock = this;
-		clock.setTime();
-		clock.displayTime();
-		clock.color.displayColor();
-	}
-
-	start() {
-		let clock = this;
-		clock.setTime();
-		clock.color = new color(clock);
-		clock.tick();
-		window.setInterval(clock.tick.bind(clock), 1000)
-	}
-}
-
-class color {
-	constructor(clock) {
-		this.encodingModes = ["hueWheel", "timeToHex"],
-		this.timeEncoding = "hueWheel",
-		this.hue = 0,
-		this.lightness = 50,
-		this.gradient = false,
-		this.clock = clock;
-	}
-
-	makeHue() {
-		let timeEncoding = this.timeEncoding;
-		let time = this.clock.getTime();
-		switch (timeEncoding) {
-			case 'hueWheel':
-				return time.hour * 15 + time.minutes * .25;
-				break;
-
-			case 'timeToHex':
-				let hex = "#"  + this.clock.addZero(time.hour) + this.clock.addZero(time.minutes) + this.clock.addZero(time.seconds);
-				return hexToHue(hex);
-				break;
-    }
-  };
-
-	generateGradient() {
-		return `linear-gradient(to right, hsl(${this.hue}, 50%, ${this.lightness}%) , hsl(${this.hue + 30}, 50%, ${this.lightness}%))`;
-	};
-
-	displayColor() {
-		this.hue = this.makeHue();
-
-		if (this.gradient) {
-			document.querySelector('body').style.setProperty('--background', this.generateGradient());
-		}
-
-		else {
-			document.querySelector('body').style.setProperty('--background', `hsl(${this.hue}, 50%, ${this.lightness}%)`);
-		}
-	};
-
-	setLightness(value) {
-		this.lightness = value;
-	}
-}
-
-function hexToHue(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-
-  var r = parseInt(result[1], 16);
-  var g = parseInt(result[2], 16);
-  var b = parseInt(result[3], 16);
-
-  r /= 255, g /= 255, b /= 255;
-  var max = Math.max(r, g, b), min = Math.min(r, g, b);
-  var h, s, l = (max + min) / 2;
-
-  if(max == min){
-      h = s = 0;
-  } else {
-      var d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      switch(max) {
-          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-          case g: h = (b - r) / d + 2; break;
-          case b: h = (r - g) / d + 4; break;
-      }
-      h /= 6;
-  }
-
-  h = Math.round(360*h);
-  s = s*100;
-  s = Math.round(s);
-  l = l*100;
-  l = Math.round(l);
-
-  return h;
-}
-
-function toggleOptions(event) {
-	if (event.target.classList.contains('button') || event.target.id === 'lightnessSlider') {
-		return;
-	}
-
-	this.classList.toggle('closed');
-	document.querySelector('.menuButton').classList.toggle('open');
-}
-
-window.onload = function() {
-	let clock = new Clock();
-	clock.start()
-	document.querySelector('#controls').addEventListener('click', toggleOptions);
-
-	lightnessSlider.addEventListener("input", function() {
-		var lightness = this.value;
-		clock.color.lightness = lightness;
-		if (clock.color.gradient) {
-		  window.body.style.setProperty('--background', `linear-gradient(to right, hsl(${clock.color.hue}, 50%, ${lightness}%) , hsl(${clock.color.hue + 30}, 50%, ${lightness}%))`);
-		}
-
-		else {
-		  window.body.style.setProperty('--background', `hsl(${clock.color.hue}, 50%, ${lightness}%)`);
-		}
-
-		lightnessValue.text(lightness + "%");
-	})
-
-	backgroundStyleToggle.addEventListener("click", function() {
-		clock.color.gradient = !clock.color.gradient;
-		clock.color.displayColor();
-		this.textContent = clock.color.gradient ? 'Switch to solid color' : 'Switch to gradient';
-	})
-
-	timeEncodingToggle.addEventListener("click", function() {
-		let encodings = clock.color.encodingModes;
-		let currentEncoding = clock.color.timeEncoding;
-		let currentIndex = encodings.indexOf(currentEncoding);
-		currentIndex++;
-		if (currentIndex >= encodings.length) currentIndex = 0;
-		clock.color.timeEncoding = encodings[currentIndex];
-
-		clock.color.displayColor();
-
-		this.innerHTML = `Current mode: ${clock.color.timeEncoding} <br> <p class="bold">Change</p>`;
-	})
-
-	explainerButton.addEventListener("click", function() {
-		explainer.classList.toggle('closed');
-	})
-};
-  </script>
-</body>
-</html>]]></content><author><name></name></author><category term="Demo" /><category term="Project" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Random Passworld</title><link href="http://localhost:4000/demo/2023/01/09/Clock.html" rel="alternate" type="text/html" title="Random Passworld" /><published>2023-01-09T00:00:00+08:00</published><updated>2023-01-09T00:00:00+08:00</updated><id>http://localhost:4000/demo/2023/01/09/Clock</id><content type="html" xml:base="http://localhost:4000/demo/2023/01/09/Clock.html"><![CDATA[<html lang="en">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-22T15:06:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">StarkLin’s blog</title><subtitle>A website with blog posts and pages</subtitle><entry><title type="html">Random Passworld</title><link href="http://localhost:4000/demo/2023/01/09/Random-password.html" rel="alternate" type="text/html" title="Random Passworld" /><published>2023-01-09T00:00:00+08:00</published><updated>2023-01-09T00:00:00+08:00</updated><id>http://localhost:4000/demo/2023/01/09/Random-password</id><content type="html" xml:base="http://localhost:4000/demo/2023/01/09/Random-password.html"><![CDATA[<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Password</title>
     <style>
       .flex {
         display: flex;
@@ -480,7 +24,6 @@ window.onload = function() {
         padding: 0.5rem;
         margin-right: 0.5rem;
       }
-
       #input-el {
         padding: 0.5rem;
         margin-right: 0.5rem;
@@ -503,7 +46,6 @@ window.onload = function() {
       </div>
       <p class="copied">copied</p>
     </div>
-
     <script>
       //dom selection
       let inputEl = document.querySelector("#input-el");
@@ -533,7 +75,7 @@ window.onload = function() {
       });
     </script>
   </body>
-</html>]]></content><author><name></name></author><category term="Demo" /><category term="Project" /><summary type="html"><![CDATA[Random Password]]></summary></entry><entry><title type="html">Memory game</title><link href="http://localhost:4000/demo/2023/01/08/Interesting-Project.html" rel="alternate" type="text/html" title="Memory game" /><published>2023-01-08T00:00:00+08:00</published><updated>2023-01-08T00:00:00+08:00</updated><id>http://localhost:4000/demo/2023/01/08/Interesting-Project</id><content type="html" xml:base="http://localhost:4000/demo/2023/01/08/Interesting-Project.html"><![CDATA[<html lang="en">
+</html>]]></content><author><name></name></author><category term="Demo" /><category term="Project" /><summary type="html"><![CDATA[Generate Password copy Generate copied]]></summary></entry><entry><title type="html">Memory game</title><link href="http://localhost:4000/2023/01/08/Interesting-Project.html" rel="alternate" type="text/html" title="Memory game" /><published>2023-01-08T00:00:00+08:00</published><updated>2023-01-08T00:00:00+08:00</updated><id>http://localhost:4000/2023/01/08/Interesting-Project</id><content type="html" xml:base="http://localhost:4000/2023/01/08/Interesting-Project.html"><![CDATA[<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Memory Game</title>
@@ -993,7 +535,7 @@ window.onload = function() {
     }
 </script>
 </body>
-</html>]]></content><author><name></name></author><category term="Demo" /><category term="Project" /><summary type="html"><![CDATA[Memory Game]]></summary></entry><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/demo/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+08:00</published><updated>2021-04-27T00:00:00+08:00</updated><id>http://localhost:4000/demo/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/demo/2021/04/27/dark-mode.html"><![CDATA[<p>More colors with less light. Click the <strong>half-moon</strong> most top-right button to turn the lights ON/OFF.
+</html>]]></content><author><name>starklin</name></author><category term="Project" /><summary type="html"><![CDATA[Memory Game]]></summary></entry><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/demo/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+08:00</published><updated>2021-04-27T00:00:00+08:00</updated><id>http://localhost:4000/demo/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/demo/2021/04/27/dark-mode.html"><![CDATA[<p>More colors with less light. Click the <strong>half-moon</strong> most top-right button to turn the lights ON/OFF.
 Here is a bit of everything, so you can check how the theme look, have fun! 👌</p>
 
 <h1 id="headers">Headers</h1>
@@ -1642,4 +1184,26 @@ Usually you would put any custom javascript script in the <em>assets</em> folder
 
 <p>Alternatively, they can be shown on a new line:</p>
 
-\[f(x) = \int \frac{2x^2+4x+6}{x-2}\]]]></content><author><name>Rohan Chandra</name></author><category term="Syntax" /><category term="Katex" /><category term="Markdown" /><summary type="html"><![CDATA[Jekyll supports the use of Markdown with inline HTML tags which makes it easier to quickly write posts with Jekyll, without having to worry too much about text formatting. A sample of the formatting follows.]]></summary></entry></feed>
+\[f(x) = \int \frac{2x^2+4x+6}{x-2}\]]]></content><author><name>Rohan Chandra</name></author><category term="Syntax" /><category term="Katex" /><category term="Markdown" /><summary type="html"><![CDATA[Jekyll supports the use of Markdown with inline HTML tags which makes it easier to quickly write posts with Jekyll, without having to worry too much about text formatting. A sample of the formatting follows.]]></summary></entry><entry><title type="html">What’s your title</title><link href="http://localhost:4000/2014/11/27/whats-your-title.html" rel="alternate" type="text/html" title="What’s your title" /><published>2014-11-27T00:00:00+08:00</published><updated>2014-11-27T00:00:00+08:00</updated><id>http://localhost:4000/2014/11/27/whats-your-title</id><content type="html" xml:base="http://localhost:4000/2014/11/27/whats-your-title.html"><![CDATA[<p>This is an example of a post which includes a feature image that has a
+text, where you don’t want to redisplay the title.
+Mind your image size in order for the text to be displayed where you want it to.
+The only limit is your imagination.</p>
+
+<p>Here is how the yaml looks inside the post:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">What's your title</span>
+<span class="na">hide_title</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">feature-img</span><span class="pi">:</span> <span class="s">assets/img/feature-img/story.jpeg</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">mhagnumdw</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">Test</span><span class="pi">,</span> <span class="nv">Lorem</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>You may wonder, why is there a title when you are not actually displaying it. <br />
+Well that’s due to some jekyll limitation:</p>
+
+<blockquote>
+  <p>You <strong>can’t</strong> set the <strong>title</strong> to the <strong>empty string</strong></p>
+</blockquote>
+
+<p>The title is used elsewhere than inside the post, for example in the blog page that list this post.
+An empty title would break those pages and possibly prevents jekyll to render your blog.</p>]]></content><author><name>Mhagnumdw</name></author><category term="Test" /><category term="Image" /><summary type="html"><![CDATA[This is an example of a post which includes a feature image that has a text, where you don’t want to redisplay the title. Mind your image size in order for the text to be displayed where you want it to. The only limit is your imagination.]]></summary></entry></feed>

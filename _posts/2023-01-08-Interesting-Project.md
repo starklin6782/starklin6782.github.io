@@ -2,7 +2,7 @@
 layout: post
 title: Memory game
 tags: [Project]
-categories: Demo
+author: starklin
 ---
 
 
