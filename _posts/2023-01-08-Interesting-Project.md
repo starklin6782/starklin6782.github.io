@@ -11,25 +11,21 @@ author: starklin
 <head>
     <meta charset="UTF-8">
     <title>Memory Game</title>
-
     <style>
         body {
             background-color: #506972;
             font-family: sans-serif;
         }
-
         .container {
             display: flex;
             flex-direction: row;
             justify-content: center;
             padding: 0 20px;
         }
-
         .container-inner {
             width: 100%;
             max-width: 1024px;
         }
-
         .vertical-space-manager {
             min-height: 100vh;
             display: flex;
@@ -37,7 +33,6 @@ author: starklin
             justify-content: space-between;
             gap: 1rem;
         }
-
         .game-player {
             max-width: 100%;
             padding: 1rem;
@@ -45,15 +40,12 @@ author: starklin
             border-radius: 16px;
             overflow: hidden;
         }
-
         .game-title {
             text-align: center;
         }
-
         #game-description {
             text-align: center;
         }
-
         #start-button-container {
             width: 100%;
             display: flex;
@@ -61,12 +53,10 @@ author: starklin
             justify-content: center;
             margin-top: 2rem;
         }
-
         .start-button-container-disabled {
             opacity: 0;
             pointer-events: none;
         }
-
         #start-button {
             color: white;
             background-color: #11D66D;
@@ -76,38 +66,31 @@ author: starklin
             cursor: pointer;
             transition: all 0.2s;
         }
-
         #start-button:hover {
             opacity: 0.7;
         }
-
         #current-level-info {
             margin-top: 1rem;
         }
-
         #current-level-number-display {
             text-align: center;
             margin-bottom: 2rem;
             transition: all 0.2s;
             opacity: 0;
         }
-
         .current-level-number-display-enabled {
             opacity: 1 !important;
         }
-
         #current-level-guesses-message {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         #current-level-guesses-display {
             display: flex;
             flex-direction: row;
             justify-content: center;
             gap: 0.5rem;
         }
-
         .current-correct-guess-panel {
             flex: 1;
             aspect-ratio: 1;
@@ -115,7 +98,6 @@ author: starklin
             transition: all 0.2s;
             border-radius: 8px;
         }
-
         #random-panel-container {
             width: 100%;
             display: flex;
@@ -123,7 +105,6 @@ author: starklin
             justify-content: center;
             margin-top: 2rem;
         }
-
         #random-panel {
             width: 100%;
             max-width: 200px;
@@ -131,35 +112,29 @@ author: starklin
             border-radius: 16px;
             /*transition: all 0.2s;*/
         }
-
         .random-panel-none {
             display: none;
         }
-
         #controls {
             margin-top: 1rem;
             transition: all 0.2s;
             opacity: 0;
             pointer-events: none;
         }
-
         .controls-enabled {
             opacity: 1 !important;
             pointer-events: all !important;
         }
-
         #controls-instructions {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         #controls-btns-row {
             margin-top: 1rem;
             display: flex;
             flex-direction: row;
             gap: 1rem;
         }
-
         .controls-btn {
             flex: 1;
             aspect-ratio: 1;
@@ -167,44 +142,35 @@ author: starklin
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .controls-btn:hover {
             opacity: 0.7;
         }
-
         #game-over-container {
             margin-top: 1rem;
             display: none;
         }
-
         .game-over-container-visible {
             display: block !important;
         }
-
         #game-over-message {
             text-align: center;
             color: #FF4238;
         }
-
         #game-over-correct-solution {
             display: flex;
             flex-direction: row;
             justify-content: center;
             gap: 0.5rem;
         }
-
         .bg-red {
             background-color: #FF4238;
         }
-
         .bg-yellow {
             background-color: #FFEE3F;
         }
-
         .bg-green {
             background-color: #11D66D;
         }
-
         .bg-purple {
             background-color: #7859E6;
         }
@@ -218,74 +184,58 @@ author: starklin
             <div class="vertical-space-manager">
                 <div>
                 </div>
-
                 <div class="game-player">
                     <h1 class="game-title">Memory Game</h1>
                     <h5 id="game-description">
                         Click "Start Game" and try to remember the colors you see!<br/><br/>
                         Each level is randomized from the prvevious & gets faster & faster!
                     </h5>
-
                     <div id="start-button-container">
                         <button id="start-button">
                             Start Game
                         </button>
                     </div>
-
                     <div id="current-level-info">
                         <div>
                             <h3 id="current-level-number-display"></h3>
                         </div>
-
                         <div>
                             <h3 id="current-level-guesses-message"></h3>
-
                             <div id="current-level-guesses-display">
-
                             </div>
                         </div>
                     </div>
-
                     <div id="random-panel-container">
                         <div id="random-panel">
                         </div>
                     </div>
-
                     <div id="controls">
                         <div>
                             <h3 id="controls-instructions">
                                 Click the colors in the order they appeared
                             </h3>
                         </div>
-
                         <div id="controls-btns-row">
                             <div id="controls-btn-red" class="controls-btn bg-red">
                             </div>
-
                             <div id="controls-btn-yellow" class="controls-btn bg-yellow">
                             </div>
-
                             <div id="controls-btn-green" class="controls-btn bg-green">
                             </div>
-
                             <div id="controls-btn-purple" class="controls-btn bg-purple">
                             </div>
                         </div>
                     </div>
-
                     <div id="game-over-container">
                         <h2 id="game-over-message">
                             Game Over!<br/><br/>
                             Click "Start Game" to play again.<br/><br/>
                             Correct solution below:
                         </h2>
-
                         <div id="game-over-correct-solution">
-
                         </div>
                     </div>
                 </div>
-
                 <div>
                 </div>
             </div>
